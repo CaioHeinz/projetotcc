@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+}
+
+header {
+    display: flex; /* Ativa o Flexbox */
+    justify-content: space-between; /* Espaça os elementos ao longo do eixo horizontal */
+    align-items: center; /* Centraliza os itens verticalmente */
+    background: linear-gradient(to right, #4CAF50, #81C784); /* Gradiente para o cabeçalho */
+    color: #fff; /* Cor do texto */
+    padding: 20px 30px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-height: 50px;
+}
+
+#title {
+    margin-bottom: 1px;
+    flex-grow: 1; /* Faz o título ocupar todo o espaço disponível à esquerda */
+}
+
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    background: linear-gradient(90deg, #272262, #4038a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    align-self: flex-end;
+}
+
+nav ul {
+    list-style: none;
+    display: flex; /* Flexbox para os itens de navegação */
+    align-items: center; /* Centraliza verticalmente */
+    margin: 0; /* Remove margem */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Itens em linha */
+    margin-left: 20px; /* Espaçamento entre itens do menu */
+    
+}
+
+nav a {
+    text-decoration: none;
+    color: white; /* Cor dos links */
+    font-weight: bold; /* Negrito nos links */
+}
+
+nav a:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.services {
+    flex: 1;
+    margin: 20px;
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4038a0; /* Cor do título da seção */
+    font-size: 2em; /* Tamanho do título da seção */
+}
+
+/* Estilo do card de serviço */
+.service-card {
+    display: flex; /* Usar flexbox para alinhar imagem e conteúdo */
+    align-items: flex-start; /* Alinha os itens ao topo */
+    background-color: rgba(255, 255, 255, 0.95);
+    height: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    width: '100%';
+}
+
+.service-content {
+    flex: 1; /* O conteúdo ocupará o espaço restante */
+    margin-right: 20px; /* Espaço entre o conteúdo e a imagem */
+    text-align: left; /* Garante que o texto fique alinhado à esquerda */
+}
+
+.service-icon {
+    width: 350px; /* Defina uma largura fixa para a imagem */
+    height: 100%; /* Mantém a proporção da imagem */
+    border-radius: 10px; /* Arredondar os cantos da imagem */
+}
+
+/* Alinhar título e conteúdo à esquerda */
+.service-content h3 {
+    margin: 0; /* Remove margem do título */
+    font-size: 1.5em; /* Tamanho do título */
+}
+
+.service-content p {
+    margin-top: 5px; /* Espaço entre o título e a descrição */
+    color: #555;
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Levanta o card ao passar o mouse */
+}
+
+.service-card button {
+    background-color: #4038a0; /* Cor do botão */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.service-card button:hover {
+    background-color: #272262; /* Cor do botão ao passar o mouse */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#search-input {
+    padding: 10px 15px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda cinza */
+    border-radius: 20px; /* Bordas arredondadas */
+    width: 200px; /* Largura do campo */
+    transition: border-color 0.3s; /* Transição suave para a borda */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+}
+
+#search-input::placeholder {
+    color: rgba(0, 0, 0, 0.5); /* Cor do placeholder transparente */
+    opacity: 1; /* Garante que a opacidade do placeholder esteja em 1 */
+}
+
+#search-input:focus {
+    border-color: #4038a0; /* Altera a cor da borda ao focar */
+    outline: none;
+}
+#search-button {
+    background: transparent; /* Fundo transparente */
+    border: none; /* Remove a borda */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    margin-left: 5px;/* Muda o cursor para indicar que é clicável */
+}
+
+#search-icon {
+    font-size: 20px; /* Tamanho do ícone */
+    color: #4038a0; /* Cor do ícone, altere conforme desejado */
+}
