@@ -1,52 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA_Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-<link rel="stylesheet" href="../css/sair.css">
-    <title>Sair-up</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/sair.css">
+  <title>Cadastro</title>
 </head>
 <body>
     <div class="container">
         <div class="card">
-          <h1>Cadastrar</h1>
-  
-          <div id="msgError"></div>
+          <h1>Cadastro</h1> 
           <div id="msgSuccess"></div>
+          <div id="msgError"></div>
+
+          <label for="tipoCadastro">   Tipo de Usuário</label>
+          <div class="label-float" style="margin-top: -4px;">
+            <select id="tipoCadastro">
+                <option value="Usuário Normal">Usuário Normal</option>
+                <option value="Prestador de Serviço">Prestador de Serviço</option>
+            </select>
+          </div>
   
           <div class="label-float">
-            <input type="text" id="nome" placeholder=" " required />
+            <input type="text" id="nome" placeholder=" " />
             <label id="labelNome" for="nome">Nome</label>
           </div>
   
           <div class="label-float">
-            <input type="text" id="usuario" placeholder=" " required />
+            <input type="text" id="usuario" placeholder=" " />
             <label id="labelUsuario" for="usuario">Usuário</label>
           </div>
-  
-          <div class="label-float">
-            <input type="password" id="senha" placeholder=" " required />
-            <label id="labelSenha" for="senha">Senha</label>
-            <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i>
+
+          <div class="infoPrestador" style="display: none;">
+            <div class="label-float">
+                <input type="email" id="emailEmpresa" placeholder=" " />
+                <label for="emailEmpresa">E-mail</label>
+            </div>
+    
+            <div class="label-float">
+                <input type="text" id="nomeEmpresa" placeholder=" " />
+                <label for="nomeEmpresa">Nome da Empresa</label>
+            </div>
+    
+            <div class="label-float">
+                <input type="text" id="telefoneEmpresa" placeholder=" " />
+                <label for="telefoneEmpresa">Telefone</label>
+            </div>
           </div>
   
           <div class="label-float">
-            <input type="password" id="confirmSenha" placeholder=" " required />
-            <label id="labelConfirmSenha" for="confirmSenha"
-              >Confirmar Senha</label
-            >
-            <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+            <input type="password" id="senha" placeholder=" " />
+            <label id="labelSenha" for="senha">Senha</label>
+            <i class="fa fa-eye" id="verSenha" aria-hidden="true"></i>
+          </div>
+  
+          <div class="label-float">
+            <input type="password" id="confirmSenha" placeholder=" " />
+            <label id="labelConfirmSenha" for="confirmSenha">Confirmar Senha</label>
+            <i class="fa fa-eye" id="verConfirmSenha" aria-hidden="true"></i>
           </div>
   
           <div class="justify-center">
             <button onclick="cadastrar()">Cadastrar</button>
           </div>
-        </div>
-      </div>
   
+          <div class="justify-center">
+            <hr />
+          </div>
+  
+          <p style="margin-top: 8px;">
+            Já tem uma conta?
+            <a href="../html/entrar.html"> Entre aqui </a>
+          </p>
+        </div>
       <script src="../js/sair.js"></script>
 </body>
 </html>

@@ -79,7 +79,54 @@
         <p>&copy; 2024 Comida de Mãe. Todos os direitos reservados.</p>
     </footer>
     <script src="../js/inicio.js"></script>
-    <script src="../js/favoritar.js"></script>
     <script src="../js/comentario.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButton = document.getElementById("favorite-button");
+            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'comidas_de_mae', name: 'Comida de Mae', slug: 'comida_de_mae.html' }));
+        });
+
+        function adicionarFavorito ({ id, name, slug }) {  
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const favoriteIcon = document.getElementById("favorite-icon");
+            const favoriteExists = favorites.find(fav => fav.id === id);
+            if (favoriteExists) {
+                // Se já está favoritado, remove da lista
+                favoriteIcon.style.color = "red";
+                const index = favorites.findIndex(item => item.id === id);
+                if (index > -1) {
+                    console.log(' deveria cair aaqui')
+                    favorites.splice(index, 1);
+                }
+                favoriteIcon.style.color = "gray"; // Volta a cor do ícone
+            } else {
+                // Se não está favoritado, adiciona à lista
+                favorites.push({ id: id, name: name, slug: id + '.html'});
+                favoriteIcon.style.color = "red"; // Muda a cor do ícone para indicar que foi favoritado
+            }
+            console.log(favorites, ' favorites')
+            // Atualiza o localStorage
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+
+        function carregarFavoritos() {
+            const favoritos = JSON.parse(localStorage.getItem('favorites')) || [];
+            const listaFavoritos = document.getElementById('favoritos-lista'); 
+
+            if (favoritos.length === 0) {
+                listaFavoritos.innerHTML = '<p>Nenhum serviço favoritado.</p>';
+                return;
+            }
+
+            favoritos.forEach(favorito => {
+                let servicoItem = document.createElement('div');
+                servicoItem.classList.add('favorito-item');
+                servicoItem.innerHTML = `<a href="service-card.html?id=${favorito}">${favorito}</a>`;
+                listaFavoritos.appendChild(servicoItem);
+            });
+        }
+
+    </script>
 </body>
 </html>
