@@ -20,19 +20,17 @@ let validConfirmSenha = false;
 let msgError = document.querySelector('#msgError');
 let msgSuccess = document.querySelector('#msgSuccess');
 
-// Novo código para monitorar o tipo de usuário
 document.getElementById("tipoCadastro").addEventListener("change", function () {
   var tipoCadastro = document.getElementById("tipoCadastro").value;
   var infoPrestador = document.querySelector(".infoPrestador");
 
   if (tipoCadastro === "Prestador de Serviço") {
-    infoPrestador.style.display = "block"; // Mostra os campos extras
+    infoPrestador.style.display = "block"; 
   } else {
-    infoPrestador.style.display = "none"; // Esconde os campos extras
+    infoPrestador.style.display = "none"; 
   }
 });
 
-// Validação de campos de texto
 nome.addEventListener('keyup', () => {
   if (nome.value.length <= 2) {
     labelNome.setAttribute('style', 'color: red');
@@ -89,7 +87,6 @@ confirmSenha.addEventListener('keyup', () => {
   }
 });
 
-// Atualização da função cadastrar
 function cadastrar() {
   if (validNome && validUsuario && validSenha && validConfirmSenha) {
     let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]');
@@ -101,10 +98,8 @@ function cadastrar() {
       userCad: usuario.value,
       senhaCad: senha.value
     };
-
-    // Adiciona informações adicionais para prestador de serviço
     if (tipoCadastro === "Prestador de Serviço") {
-      let emailEmpresa = document.get('#emailEmpresa').value;
+      let emailEmpresa = document.querySelector('#emailEmpresa').value;
       let nomeEmpresa = document.querySelector('#nomeEmpresa').value;
       let telefoneEmpresa = document.querySelector('#telefoneEmpresa').value;
 
@@ -134,7 +129,6 @@ function cadastrar() {
   }
 }
 
-// Código para visualizar as senhas
 btn.addEventListener('click', () => {
   let inputSenha = document.querySelector('#senha');
   

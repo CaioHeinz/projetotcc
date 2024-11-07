@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/tela_servico.css">
+    <title>Doces</title>
+</head>
+<body>
+    <header>
+        <div id="title">
+            <h1>Doces</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Início</a></li>
+                <li>
+                    <form action="#" method="GET" style="display: inline;">
+                        <input type="text" placeholder="Encontre um profissional..." id="search-input">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search" id="search-icon"></i> 
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="company-info">
+            <h2>Sobre Nós</h2>
+            <p>Nosso serviço de Doces oferece uma seleção deliciosa de sobremesas que encantam em qualquer evento. Desde brigadeiros gourmet até bolos decorados, nossos doces são preparados com ingredientes de alta qualidade e muito carinho.</p>
+            <p>Perfeitos para festas de aniversário, casamentos ou qualquer celebração, nossos produtos são personalizados de acordo com o tema do seu evento, garantindo que cada detalhe seja especial e saboroso.</p>
+        </section>
+
+        <section class="gallery">
+            <h2>Galeria de Fotos</h2>
+            <div class="gallery-images">
+                <img src="../images/doces1.jpg" alt="Doces 1">
+                <img src="../images/doces2.jpg" alt="Doces 2">
+                <img src="../images/doces3.jpg" alt="Doces 3">
+                <img src="../images/doces4.jpg" alt="Doces 4">
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Avaliações dos Clientes</h2>
+            <div class="review">
+                <p><strong>Camila Sousa:</strong> "Os doces estavam incríveis! Todos elogiaram e pediram a receita!"</p>
+            </div>
+            <div class="review">
+                <p><strong>Thiago Costa:</strong> "Excelente atendimento e os melhores doces que já provei!"</p>
+            </div>
+            <div class="review">
+                <p><strong>Juliana Ferreira:</strong> "Fizemos um pedido para o aniversário da minha filha e foi um sucesso!"</p>
+            </div>
+            <div id="comments-list"></div>
+        </section>
+
+        <section class="add-review">
+            <h2>Deixe seu Comentário</h2>
+            <form id="comment-form">
+                <textarea id="new-comment" rows="4" placeholder="Escreva seu comentário..."></textarea>
+                <br>
+                <button type="submit">Enviar Comentário</button>
+            </form>
+            <button id="favorite-button">
+                <i class="fas fa-heart" id="favorite-icon" style="color: gray;"></i> Favoritar
+            </button>
+        </section>
+
+        <section class="contact">
+            <h2>Contato</h2>
+            <p>Para mais informações ou orçamento, entre em contato conosco:</p>
+            <p>Email: <a href="mailto:contato@doces.com">contato@doces.com</a></p>
+            <p>Telefone: (48) 99999-9999</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Doces. Todos os direitos reservados.</p>
+    </footer>
+    <script src="../js/inicio.js"></script>
+    <script src="../js/comentario.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButton = document.getElementById("favorite-button");
+            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'doces', name: 'Doces', slug: 'doces.html' }));
+        });
+
+        function adicionarFavorito({ id, name, slug }) {  
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const favoriteIcon = document.getElementById("favorite-icon");
+            const favoriteExists = favorites.find(fav => fav.id === id);
+            if (favoriteExists) {
+                favoriteIcon.style.color = "gray";
+                favorites.splice(favorites.findIndex(item => item.id === id), 1);
+            } else {
+                favorites.push({ id: id, name: name, slug: id + '.html' });
+                favoriteIcon.style.color = "red"; 
+            }
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+
+        function carregarFavoritos() {
+            const favoritos = JSON.parse(localStorage.getItem('favorites')) || [];
+            const listaFavoritos = document.getElementById('favoritos-lista'); 
+
+            if (favoritos.length === 0) {
+                listaFavoritos.innerHTML = '<p>Nenhum serviço favoritado.</p>';
+                return;
+            }
+
+            favoritos.forEach(favorito => {
+                let servicoItem = document.createElement('div');
+                servicoItem.classList.add('favorito-item');
+                servicoItem.innerHTML = `<a href="service-card.html?id=${favorito.id}">${favorito.name}</a>`;
+                listaFavoritos.appendChild(servicoItem);
+            });
+        }
+    </script>
+</body>
+</html>

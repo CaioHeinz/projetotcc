@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/tela_servico.css">
+    <title>Cenografia Temática</title>
+</head>
+<body>
+    <header>
+        <div id="title">
+            <h1>Cenografia Temática</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Início</a></li>
+                <li>
+                    <form action="#" method="GET" style="display: inline;">
+                        <input type="text" placeholder="Encontre um profissional..." id="search-input">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search" id="search-icon"></i> 
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="company-info">
+            <h2>Sobre Nós</h2>
+            <p>A Cenografia Temática é especializada em transformar espaços em ambientes memoráveis e temáticos para eventos. Trabalhamos com um time de profissionais criativos e experientes, prontos para tornar sua visão realidade, seja ela clássica, moderna ou totalmente personalizada.</p>
+            <p>De festas de aniversário e casamentos a eventos corporativos, criamos decorações que se destacam e proporcionam uma experiência única aos convidados. Nos orgulhamos de criar cenários que transformam momentos em memórias inesquecíveis.</p>
+        </section>
+
+        <section class="gallery">
+            <h2>Galeria de Fotos</h2>
+            <div class="gallery-images">
+                <img src="../images/cenografia1.jpg" alt="Decoração Temática 1">
+                <img src="../images/cenografia2.jpg" alt="Decoração Temática 2">
+                <img src="../images/cenografia3.jpg" alt="Decoração Temática 3">
+                <img src="../images/cenografia4.jpg" alt="Decoração Temática 4">
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Avaliações dos Clientes</h2>
+            <div class="review">
+                <p><strong>Andréia Farias:</strong> "A decoração ficou fantástica! Exatamente como imaginamos, com um toque único. Recomendo!"</p>
+            </div>
+            <div class="review">
+                <p><strong>Renato Martins:</strong> "Equipe super atenciosa e criativa. O evento foi um sucesso, e a cenografia fez toda a diferença."</p>
+            </div>
+            <div class="review">
+                <p><strong>Juliana Silva:</strong> "Eles capturaram exatamente o clima que queríamos. A cenografia transformou o ambiente em algo mágico!"</p>
+            </div>
+            <div id="comments-list"></div>
+        </section>
+        
+        <section class="add-review">
+            <h2>Deixe seu Comentário</h2>
+            <form id="comment-form">
+                <textarea id="new-comment" rows="4" placeholder="Escreva seu comentário..."></textarea>
+                <br>
+                <button type="submit">Enviar Comentário</button>
+            </form>
+            <button id="favorite-button">
+                <i class="fas fa-heart" id="favorite-icon" style="color: gray;"></i> Favoritar
+            </button>
+        </section>
+
+        <section class="contact">
+            <h2>Contato</h2>
+            <p>Para mais informações ou orçamento, entre em contato conosco:</p>
+            <p>Email: <a href="mailto:contato@cenografiatematica.com">contato@cenografiatematica.com</a></p>
+            <p>Telefone: (48) 95555-4444</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cenografia Temática. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../js/inicio.js"></script>
+    <script src="../js/comentario.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButton = document.getElementById("favorite-button");
+            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'cenografia_tematica', name: 'Cenografia Temática', slug: 'cenografia_tematica.html' }));
+        });
+
+        function adicionarFavorito({ id, name, slug }) {
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const favoriteIcon = document.getElementById("favorite-icon");
+            const favoriteExists = favorites.find(fav => fav.id === id);
+
+            if (favoriteExists) {
+                const index = favorites.findIndex(item => item.id === id);
+                favorites.splice(index, 1);
+                favoriteIcon.style.color = "gray";
+            } else {
+                favorites.push({ id: id, name: name, slug: id + '.html' });
+                favoriteIcon.style.color = "red";
+            }
+
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/decoracoes_incriveis.css">
+    <link rel="stylesheet" href="../css/tela_servico.css">
     <title>Decorações Incríveis</title>
 </head>
 <body>
@@ -54,12 +54,13 @@
             <div class="review">
                 <p><strong>Ana Paula:</strong> "Ótima equipe, criativa e muito profissional. Recomendo a todos!"</p>
             </div>
+            <div id="comments-list"></div>
         </section>
 
         <section class="add-review">
             <h2>Deixe seu Comentário</h2>
             <form id="comment-form">
-                <textarea id="newComment" rows="4" placeholder="Escreva seu comentário..."></textarea>
+                <textarea id="new-comment" rows="4" placeholder="Escreva seu comentário..."></textarea>
                 <br>
                 <button type="submit">Enviar Comentário</button>
             </form>
@@ -83,37 +84,39 @@
     <script src="../js/inicio.js"></script>
     <script>
 
+        const commentForm = document.getElementById('comment-form');
+        const commentsList = document.getElementById('comments-list');
+
+        let userLogado = JSON.parse(localStorage.getItem("userLogado"));
+
         document.addEventListener("DOMContentLoaded", function () {
             const favoriteButton = document.getElementById("favorite-button");
-            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'decoracoes_incriveis', name: 'Decorações Incriveis', slug: 'decoracoes_incriveis.html' }));
+            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'comidas_de_mae', name: 'Comida de Mãe', slug: 'comida_de_mae.html' }));
         });
 
-        function adicionarFavorito ({ id, name, slug }) {  
+        function adicionarFavorito({ id, name, slug }) {
             const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
             const favoriteIcon = document.getElementById("favorite-icon");
             const favoriteExists = favorites.find(fav => fav.id === id);
             if (favoriteExists) {
-                // Se já está favoritado, remove da lista
                 favoriteIcon.style.color = "red";
                 const index = favorites.findIndex(item => item.id === id);
                 if (index > -1) {
                     console.log(' deveria cair aaqui')
                     favorites.splice(index, 1);
                 }
-                favoriteIcon.style.color = "gray"; // Volta a cor do ícone
+                favoriteIcon.style.color = "gray";
             } else {
-                // Se não está favoritado, adiciona à lista
-                favorites.push({ id: id, name: name, slug: id + '.html'});
-                favoriteIcon.style.color = "red"; // Muda a cor do ícone para indicar que foi favoritado
+                favorites.push({ id: id, name: name, slug: id + '.html' });
+                favoriteIcon.style.color = "red";
             }
             console.log(favorites, ' favorites')
-            // Atualiza o localStorage
             localStorage.setItem("favorites", JSON.stringify(favorites));
         }
 
         function carregarFavoritos() {
             const favoritos = JSON.parse(localStorage.getItem('favorites')) || [];
-            const listaFavoritos = document.getElementById('favoritos-lista'); 
+            const listaFavoritos = document.getElementById('favoritos-lista');
 
             if (favoritos.length === 0) {
                 listaFavoritos.innerHTML = '<p>Nenhum serviço favoritado.</p>';
@@ -127,6 +130,59 @@
                 listaFavoritos.appendChild(servicoItem);
             });
         }
+
+        function renderComments() {
+            // Limpa o conteúdo anterior
+            commentsList.innerHTML = '';
+
+            // Pega os comentários do localStorage
+            const comentariosStorage = localStorage.getItem('comentarios');
+            const comentariosAtuais = comentariosStorage ? JSON.parse(comentariosStorage) : [];
+
+            const comentariosItem = comentariosAtuais?.find(item => item.id === 'decoracoes_incriveis')
+
+            // Adiciona cada comentário à lista
+            comentariosItem?.data?.forEach(comment => {
+                console.log(comment, 'comment')
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('review');
+                commentElement.innerHTML = `<p>${comment.user}: ${comment.text}</p>`;
+                commentsList.appendChild(commentElement);
+            });
+        }
+
+
+        commentForm.addEventListener('submit', (event) => {
+
+            const newComment = document.getElementById('new-comment');
+
+            const comentariosStorage = localStorage.getItem('comentarios')?.length ? JSON.parse(localStorage.getItem('comentarios')) : []
+
+            const comentariosAtuais = comentariosStorage?.find?.(item => item?.id === 'decoracoes_incriveis') ? comentariosStorage?.find?.(item => item?.id === 'decoracoes_incriveis')?.data : []
+
+            const newComments = [
+                {
+                    id: 'decoracoes_incriveis',
+                    data: [
+                        ...comentariosAtuais,
+                        { user: userLogado?.nome, text: newComment.value }
+                    ]
+                }
+            ].filter(Boolean)
+
+            event.preventDefault();
+
+            localStorage.setItem('comentarios', JSON.stringify(newComments))
+            renderComments()
+
+            newComment.value = '';
+
+
+
+        })
+
+        renderComments()
+
 
     </script>
 </body>

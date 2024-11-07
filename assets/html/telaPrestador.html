@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Serviço</title>
     <link rel="stylesheet" href="../css/telaPrestador.css">
 </head>
+
 <body>
+    <header>
+        <h1>Prestador de Serviços</h1>
+        <button id="logout-button" onclick="window.location.href='entrar.html'">Sair</button>
+    </header>
     <div class="container">
-        <h1>Cadastrar Novo Serviço</h1>
-        <form id="formCriarServico">
+        <div class="containerInnerWrapper">
+            <h2>Cadastrar Serviço</h2>
+            <form id="formCriarServico">
 
-            <div class="form-group">
-                <label for="labelServico">Descrição do Serviço:</label>
-                <textarea id="textAreaServico" name="descricaoServico" rows="4" required ></textarea>
-            </div>
-           
+                <div class="form-group">
+                    <label for="labelServico">Descrição do Serviço:</label>
+                    <textarea id="textAreaServico" name="descricaoServico" rows="4" required></textarea>
+                </div>
 
-            <div class="form-group">
-                <label for="labelNomeEmpresa">Nome empresa:</label>
-                <textarea id="textAreaNomeEmpresa" name="textAreaNomeEmpresa" rows="4" required disabled></textarea>
-            </div>
-           
-            
-            <div class="form-group">
-                <label for="labelTelefone">Telefone:</label>
-                <textarea id="textAreaTelefone" name="textAreaTelefone" rows="4" required disabled></textarea>
-            </div>
-           
-            <div class="form-group">
-                <label for="labelEmail">E-mail:</label>
-                <textarea id="textAreaEmail" name="textAreaEmail" rows="4" required disabled ></textarea>
-            </div>
-           
-            <div>
-                <button type="submit">Cadastrar Serviço</button>
-            </div>
+                <div class="form-group">
+                    <label for="labelLocalizacao">Localização</label>
+                    <textarea id="textAreaLocalizacao" name="textAreaLocalizacao" required ></textarea>
+                </div>
 
+                <div class="form-group">
+                    <label for="labelNomeEmpresa">Nome empresa:</label>
+                    <textarea id="textAreaNomeEmpresa" name="textAreaNomeEmpresa" rows="4" required disabled></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="labelTelefone">Telefone:</label>
+                    <textarea id="textAreaTelefone" name="textAreaTelefone" rows="4" required disabled></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="labelEmail">E-mail:</label>
+                    <textarea id="textAreaEmail" name="textAreaEmail" rows="4" required disabled></textarea>
+                </div>
+
+                <input type="file" id="docpicker" style="margin-bottom: 16px;" />
+
+                <div>
+                    <button type="submit">Cadastrar Serviço</button>
+                </div>
+
+        </div>
         </form>
 
-        <!-- Mensagens de sucesso/erro -->
         <div id="msgSuccess" class="success-message"></div>
         <div id="msgError" class="error-message" style="display:none;"></div>
 
-        <!-- Lista de serviços que será preenchida dinamicamente -->
         <div class="services"></div>
     </div>
-
-    <script src="../js/telaPrestador.js"></script> <!-- Link para o arquivo JS -->
+    <script src="../js/telaPrestador.js"></script>
 </body>
+
 </html>

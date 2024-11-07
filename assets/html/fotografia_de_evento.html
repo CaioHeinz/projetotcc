@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/tela_servico.css">
+    <title>Fotografia de Evento</title>
+</head>
+<body>
+    <header>
+        <div id="title">
+            <h1>Fotografia de Evento</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Início</a></li>
+                <li>
+                    <form action="#" method="GET" style="display: inline;">
+                        <input type="text" placeholder="Encontre um profissional..." id="search-input">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search" id="search-icon"></i> 
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="company-info">
+            <h2>Sobre Nós</h2>
+            <p>Nosso serviço de Fotografia de Evento captura os momentos mais importantes do seu evento com qualidade e profissionalismo. Com um olhar atento aos detalhes e experiência em diversos tipos de eventos, garantimos que cada foto conte uma história única.</p>
+            <p>Utilizamos equipamentos de última geração e oferecemos uma variedade de pacotes que se adaptam a qualquer necessidade, desde eventos corporativos até casamentos e aniversários. Nosso objetivo é eternizar cada momento especial com registros fotográficos impecáveis.</p>
+        </section>
+
+        <section class="gallery">
+            <h2>Galeria de Fotos</h2>
+            <div class="gallery-images">
+                <img src="../images/foto1.jpg" alt="Foto de Evento 1">
+                <img src="../images/foto2.jpg" alt="Foto de Evento 2">
+                <img src="../images/foto3.jpg" alt="Foto de Evento 3">
+                <img src="../images/foto4.jpg" alt="Foto de Evento 4">
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Avaliações dos Clientes</h2>
+            <div class="review">
+                <p><strong>Camila Souza:</strong> "As fotos ficaram perfeitas! O fotógrafo foi muito atencioso e capturou todos os momentos importantes."</p>
+            </div>
+            <div class="review">
+                <p><strong>Felipe Costa:</strong> "Excelente trabalho, as imagens capturam perfeitamente o clima do evento. Recomendo!"</p>
+            </div>
+            <div class="review">
+                <p><strong>Mariana Oliveira:</strong> "Profissionais extremamente talentosos e as fotos são de altíssima qualidade. Muito satisfeito!"</p>
+            </div>
+            <div id="comments-list"></div>
+        </section>
+        
+        <section class="add-review">
+            <h2>Deixe seu Comentário</h2>
+            <form id="comment-form">
+                <textarea id="new-comment" rows="4" placeholder="Escreva seu comentário..."></textarea>
+                <br>
+                <button type="submit">Enviar Comentário</button>
+            </form>
+            <button id="favorite-button">
+                <i class="fas fa-heart" id="favorite-icon" style="color: gray;"></i> Favoritar
+            </button>
+        </section>
+
+        <section class="contact">
+            <h2>Contato</h2>
+            <p>Para mais informações ou orçamento, entre em contato conosco:</p>
+            <p>Email: <a href="mailto:contato@fotografiadeevento.com">contato@fotografiadeevento.com</a></p>
+            <p>Telefone: (48) 97777-6666</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fotografia de Evento. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../js/inicio.js"></script>
+    <script src="../js/comentario.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButton = document.getElementById("favorite-button");
+            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'fotografia_de_evento', name: 'Fotografia de Evento', slug: 'fotografia_de_evento.html' }));
+        });
+
+        function adicionarFavorito({ id, name, slug }) {
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const favoriteIcon = document.getElementById("favorite-icon");
+            const favoriteExists = favorites.find(fav => fav.id === id);
+
+            if (favoriteExists) {
+                const index = favorites.findIndex(item => item.id === id);
+                favorites.splice(index, 1);
+                favoriteIcon.style.color = "gray";
+            } else {
+                favorites.push({ id: id, name: name, slug: id + '.html' });
+                favoriteIcon.style.color = "red";
+            }
+
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+    </script>
+</body>
+</html>

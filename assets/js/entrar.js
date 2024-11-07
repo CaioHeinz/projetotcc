@@ -38,6 +38,7 @@ function entrar() {
         email: item.emailCad,
         telefone: item.telefoneCad,
         nomeEmpresa: item.nomeEmpresaCad, 
+      
       };
     }
   });

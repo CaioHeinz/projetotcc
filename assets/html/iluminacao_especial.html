@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/tela_servico.css">
+    <title>Iluminação Especial</title>
+</head>
+<body>
+    <header>
+        <div id="title">
+            <h1>Iluminação Especial</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Início</a></li>
+                <li>
+                    <form action="#" method="GET" style="display: inline;">
+                        <input type="text" placeholder="Encontre um profissional..." id="search-input">
+                        <button type="submit" id="search-button">
+                            <i class="fas fa-search" id="search-icon"></i> 
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="company-info">
+            <h2>Sobre Nós</h2>
+            <p>Iluminação Especial é o serviço que transforma o ambiente do seu evento, criando atmosferas únicas e destacando cada detalhe. Utilizamos tecnologia de ponta e uma equipe especializada para personalizar a iluminação de acordo com o estilo e o tema do evento.</p>
+            <p>Seja em festas, casamentos, eventos corporativos ou shows, nossa iluminação cria efeitos incríveis e proporciona uma experiência visual inesquecível para todos os convidados.</p>
+        </section>
+
+        <section class="gallery">
+            <h2>Galeria de Fotos</h2>
+            <div class="gallery-images">
+                <img src="../images/iluminacao1.jpg" alt="Iluminação 1">
+                <img src="../images/iluminacao2.jpg" alt="Iluminação 2">
+                <img src="../images/iluminacao3.jpg" alt="Iluminação 3">
+                <img src="../images/iluminacao4.jpg" alt="Iluminação 4">
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Avaliações dos Clientes</h2>
+            <div class="review">
+                <p><strong>Ana Costa:</strong> "A iluminação fez toda a diferença no nosso casamento, foi mágico! Recomendo a todos."</p>
+            </div>
+            <div class="review">
+                <p><strong>Marcelo Lima:</strong> "Excelente trabalho! O ambiente ficou incrível, realmente superou nossas expectativas."</p>
+            </div>
+            <div class="review">
+                <p><strong>Carla Mendes:</strong> "Muito profissionalismo e competência. A iluminação trouxe um charme especial à festa."</p>
+            </div>
+            <div id="comments-list"></div>
+        </section>
+
+        <section class="add-review">
+            <h2>Deixe seu Comentário</h2>
+            <form id="comment-form">
+                <textarea id="new-comment" rows="4" placeholder="Escreva seu comentário..."></textarea>
+                <br>
+                <button type="submit">Enviar Comentário</button>
+            </form>
+            <button id="favorite-button">
+                <i class="fas fa-heart" id="favorite-icon" style="color: gray;"></i> Favoritar
+            </button>
+        </section>
+
+        <section class="contact">
+            <h2>Contato</h2>
+            <p>Para mais informações ou orçamento, entre em contato conosco:</p>
+            <p>Email: <a href="mailto:contato@iluminacaoespecial.com">contato@iluminacaoespecial.com</a></p>
+            <p>Telefone: (48) 99999-9999</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Iluminação Especial. Todos os direitos reservados.</p>
+    </footer>
+    <script src="../js/inicio.js"></script>
+    <script src="../js/comentario.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButton = document.getElementById("favorite-button");
+            favoriteButton.addEventListener("click", () => adicionarFavorito({ id: 'iluminacao_especial', name: 'Iluminação Especial', slug: 'iluminacao_especial.html' }));
+        });
+
+        function adicionarFavorito({ id, name, slug }) {  
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const favoriteIcon = document.getElementById("favorite-icon");
+            const favoriteExists = favorites.find(fav => fav.id === id);
+            if (favoriteExists) {
+                favoriteIcon.style.color = "gray";
+                favorites.splice(favorites.findIndex(item => item.id === id), 1);
+            } else {
+                favorites.push({ id: id, name: name, slug: id + '.html' });
+                favoriteIcon.style.color = "red"; 
+            }
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+
+        function carregarFavoritos() {
+            const favoritos = JSON.parse(localStorage.getItem('favorites')) || [];
+            const listaFavoritos = document.getElementById('favoritos-lista'); 
+
+            if (favoritos.length === 0) {
+                listaFavoritos.innerHTML = '<p>Nenhum serviço favoritado.</p>';
+                return;
+            }
+
+            favoritos.forEach(favorito => {
+                let servicoItem = document.createElement('div');
+                servicoItem.classList.add('favorito-item');
+                servicoItem.innerHTML = `<a href="service-card.html?id=${favorito.id}">${favorito.name}</a>`;
+                listaFavoritos.appendChild(servicoItem);
+            });
+        }
+    </script>
+</body>
+</html>

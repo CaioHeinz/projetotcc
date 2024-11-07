@@ -2,26 +2,21 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Cor de fundo suave */
+    background-color: #f4f4f4;
 }
-
 header {
-    display: flex; /* Ativa o Flexbox */
-    justify-content: space-between; /* Espaça os elementos ao longo do eixo horizontal */
-    align-items: center; /* Centraliza os itens verticalmente */
-    background: linear-gradient(to right, #4CAF50, #81C784); /* Gradiente para o cabeçalho */
-    color: #fff; /* Cor do texto */
-    padding: 20px 30px; /* Espaçamento interno */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    padding: 20px 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     max-height: 50px;
 }
-
 #title {
     margin-bottom: 1px;
-    flex-grow: 1; /* Faz o título ocupar todo o espaço disponível à esquerda */
+    flex-grow: 1; 
 }
-
-
 h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 3em;
@@ -30,35 +25,28 @@ h1 {
     -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 nav {
     align-self: flex-end;
 }
-
 nav ul {
     list-style: none;
-    display: flex; /* Flexbox para os itens de navegação */
-    align-items: center; /* Centraliza verticalmente */
-    margin: 0; /* Remove margem */
+    display: flex; 
+    align-items: center; 
+    margin: 0; 
     padding: 0;
 }
-
 nav ul li {
-    display: inline; /* Itens em linha */
-    margin-left: 20px; /* Espaçamento entre itens do menu */
-    
+    display: inline; 
+    margin-left: 20px; 
 }
-
 nav a {
     text-decoration: none;
-    color: white; /* Cor dos links */
-    font-weight: bold; /* Negrito nos links */
+    color: white; 
+    font-weight: bold; 
 }
-
 nav a:hover {
-    text-decoration: underline; /* Sublinha ao passar o mouse */
+    text-decoration: underline;
 }
-
 main {
     flex: 1;
     display: flex;
@@ -68,23 +56,19 @@ main {
     padding-left: 20vw;
     padding-right: 20vw;
 }
-
 .services {
     flex: 1;
     margin: 20px;
 }
-
 .services h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #4038a0; /* Cor do título da seção */
-    font-size: 2em; /* Tamanho do título da seção */
+    color: #4038a0;
+    font-size: 2em; 
 }
-
-/* Estilo do card de serviço */
 .service-card {
-    display: flex; /* Usar flexbox para alinhar imagem e conteúdo */
-    align-items: flex-start; /* Alinha os itens ao topo */
+    display: flex; 
+    align-items: flex-start;
     background-color: rgba(255, 255, 255, 0.95);
     height: 200px;
     border-radius: 10px;
@@ -94,36 +78,29 @@ main {
     transition: transform 0.3s;
     width: '100%';
 }
-
 .service-content {
-    flex: 1; /* O conteúdo ocupará o espaço restante */
-    margin-right: 20px; /* Espaço entre o conteúdo e a imagem */
-    text-align: left; /* Garante que o texto fique alinhado à esquerda */
+    flex: 1;
+    margin-right: 20px;
+    text-align: left; 
 }
-
 .service-icon {
-    width: 350px; /* Defina uma largura fixa para a imagem */
-    height: 100%; /* Mantém a proporção da imagem */
-    border-radius: 10px; /* Arredondar os cantos da imagem */
+    width: 350px; 
+    height: 100%; 
+    border-radius: 10px; 
 }
-
-/* Alinhar título e conteúdo à esquerda */
 .service-content h3 {
-    margin: 0; /* Remove margem do título */
-    font-size: 1.5em; /* Tamanho do título */
+    margin: 0; 
+    font-size: 1.5em; 
 }
-
 .service-content p {
-    margin-top: 5px; /* Espaço entre o título e a descrição */
+    margin-top: 5px; 
     color: #555;
 }
-
 .service-card:hover {
-    transform: translateY(-5px); /* Levanta o card ao passar o mouse */
+    transform: translateY(-5px); 
 }
-
 .service-card button {
-    background-color: #4038a0; /* Cor do botão */
+    background-color: #4038a0; 
     color: white;
     border: none;
     padding: 10px 15px;
@@ -131,45 +108,55 @@ main {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 .service-card button:hover {
-    background-color: #272262; /* Cor do botão ao passar o mouse */
+    background-color: #272262;
 }
-
 footer {
     text-align: center;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
+#logout-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#logout-button:hover {
+    background-color: #d32f2f;
+}
 
 #search-input {
-    padding: 10px 15px; /* Espaçamento interno */
-    border: 1px solid #ccc; /* Borda cinza */
-    border-radius: 20px; /* Bordas arredondadas */
-    width: 200px; /* Largura do campo */
-    transition: border-color 0.3s; /* Transição suave para a borda */
-    font-size: 16px; /* Tamanho da fonte */
-    color: #333; /* Cor do texto */
+    padding: 10px 15px; 
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 200px;
+    transition: border-color 0.3s;
+    font-size: 16px; 
+    color: #333;
 }
-
 #search-input::placeholder {
-    color: rgba(0, 0, 0, 0.5); /* Cor do placeholder transparente */
-    opacity: 1; /* Garante que a opacidade do placeholder esteja em 1 */
+    color: rgba(0, 0, 0, 0.5);
+    opacity: 1; 
 }
-
 #search-input:focus {
-    border-color: #4038a0; /* Altera a cor da borda ao focar */
+    border-color: #4038a0; 
     outline: none;
 }
 #search-button {
-    background: transparent; /* Fundo transparente */
-    border: none; /* Remove a borda */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
-    margin-left: 5px;/* Muda o cursor para indicar que é clicável */
+    background: transparent; 
+    border: none; 
+    cursor: pointer; 
+    margin-left: 5px;
 }
-
 #search-icon {
-    font-size: 20px; /* Tamanho do ícone */
-    color: #4038a0; /* Cor do ícone, altere conforme desejado */
+    font-size: 20px;
+    color: #4038a0; 
 }
